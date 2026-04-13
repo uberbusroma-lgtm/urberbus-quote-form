@@ -1029,138 +1029,139 @@ export default function QuoteRequestForm({
                   </h2>
 
                   <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-                    <h3 className="mb-4 text-base font-semibold text-slate-900">
-                      {t.outboundSectionTitle}
-                    </h3>
+  <h3 className="mb-4 text-base font-semibold text-slate-900">
+    {t.outboundSectionTitle}
+  </h3>
 
-                    <div className="grid gap-5 sm:grid-cols-2">
-                      <Field
-                        label={t.departureAddress}
-                        error={errors.departureAddress}
-                      >
-                        <input
-                          ref={departureAddressRef}
-                          value={formData.departureAddress}
-                          onChange={(e) =>
-                            updateField("departureAddress", e.target.value)
-                          }
-                          className={inputClass(errors.departureAddress)}
-                          placeholder={t.departureAddress}
-                        />
-                      </Field>
+  <div className="grid gap-5 sm:grid-cols-2">
+    <Field
+      label={t.departureAddress}
+      error={errors.departureAddress}
+    >
+      <input
+        ref={departureAddressRef}
+        value={formData.departureAddress}
+        onChange={(e) =>
+          updateField("departureAddress", e.target.value)
+        }
+        className={inputClass(errors.departureAddress)}
+        placeholder={t.departureAddress}
+      />
+    </Field>
 
-                      <Field
-                        label={t.departureCity}
-                        error={errors.departureCity}
-                      >
-                        <input
-                          value={formData.departureCity}
-                          onChange={(e) =>
-                            updateField("departureCity", e.target.value)
-                          }
-                          className={inputClass(errors.departureCity)}
-                          placeholder={t.departureCity}
-                        />
-                      </Field>
-                    </div>
+    <Field
+      label={t.departureCity}
+      error={errors.departureCity}
+    >
+      <input
+        value={formData.departureCity}
+        onChange={(e) =>
+          updateField("departureCity", e.target.value)
+        }
+        className={inputClass(errors.departureCity)}
+        placeholder={t.departureCity}
+      />
+    </Field>
+  </div>
 
-                    <div className="mt-5 grid gap-5 sm:grid-cols-2">
-                      <Field
-                        label={t.destinationAddress}
-                        error={errors.destinationAddress}
-                      >
-                        <input
-                          ref={destinationAddressRef}
-                          value={formData.destinationAddress}
-                          onChange={(e) =>
-                            updateField("destinationAddress", e.target.value)
-                          }
-                          className={inputClass(errors.destinationAddress)}
-                          placeholder={t.destinationAddress}
-                        />
-                      </Field>
+  <div className="mt-5 grid gap-5 sm:grid-cols-2">
+    <Field
+      label={t.destinationAddress}
+      error={errors.destinationAddress}
+    >
+      <input
+        ref={destinationAddressRef}
+        value={formData.destinationAddress}
+        onChange={(e) =>
+          updateField("destinationAddress", e.target.value)
+        }
+        className={inputClass(errors.destinationAddress)}
+        placeholder={t.destinationAddress}
+      />
+    </Field>
 
-                      <Field
-                        label={t.destinationCity}
-                        error={errors.destinationCity}
-                      >
-                        <input
-                          value={formData.destinationCity}
-                          onChange={(e) =>
-                            updateField("destinationCity", e.target.value)
-                          }
-                          className={inputClass(errors.destinationCity)}
-                          placeholder={t.destinationCity}
-                        />
-                      </Field>
-                    </div>
+    <Field
+      label={t.destinationCity}
+      error={errors.destinationCity}
+    >
+      <input
+        value={formData.destinationCity}
+        onChange={(e) =>
+          updateField("destinationCity", e.target.value)
+        }
+        className={inputClass(errors.destinationCity)}
+        placeholder={t.destinationCity}
+      />
+    </Field>
+  </div>
 
-                    <div className="mt-5 space-y-4">
-                      <div className="flex items-center justify-end gap-3">
-                        <button
-                          type="button"
-                          onClick={addOutboundStop}
-                          className="inline-flex items-center justify-center rounded-2xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
-                        >
-                          + {t.addStop}
-                        </button>
-                      </div>
+  <div className="mt-5 space-y-4">
+    <div className="flex items-center justify-end gap-3">
+      <button
+        type="button"
+        onClick={addOutboundStop}
+        className="inline-flex items-center justify-center rounded-2xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+      >
+        + {t.addStop}
+      </button>
+    </div>
 
-                      {formData.outboundStops.length === 0 ? (
-                        <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-4 py-4 text-sm text-slate-500">
-                          {t.noStops}
-                        </div>
-                      ) : (
-                        <div className="space-y-4">
-                          {formData.outboundStops.map((stop, index) => (
-                            <div
-                              key={index}
-                              className="rounded-3xl border border-slate-200 bg-white p-4"
-                            >
-                              <div className="mb-4 flex items-center justify-between gap-3">
-                                <span className="text-sm font-semibold text-slate-900">
-                                  {t.outboundStopLabel} {index + 1}
-                                </span>
-                                <button
-                                  type="button"
-                                  onClick={() => removeOutboundStop(index)}
-                                  className="text-sm font-medium text-red-600 transition hover:text-red-700"
-                                >
-                                  {t.remove}
-                                </button>
-                              </div>
+    {formData.outboundStops.length === 0 ? (
+      <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-4 py-4 text-sm text-slate-500">
+        {t.noStops}
+      </div>
+    ) : (
+      <div className="space-y-4">
+        {formData.outboundStops.map((stop, index) => (
+          <div
+            key={index}
+            className="rounded-3xl border border-slate-200 bg-white p-4"
+          >
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <span className="text-sm font-semibold text-slate-900">
+                {t.outboundStopLabel} {index + 1}
+              </span>
+              <button
+                type="button"
+                onClick={() => removeOutboundStop(index)}
+                className="text-sm font-medium text-red-600 transition hover:text-red-700"
+              >
+                {t.remove}
+              </button>
+            </div>
 
-                              <div className="grid gap-4 sm:grid-cols-2">
-                                <Field label={t.stopAddress}>
-                                  <input
-                                    ref={(el) => {
-                                      outboundStopAddressRefs.current[index] = el;
-                                    }}
-                                    value={stop.address}
-                                    onChange={(e) =>
-                                      updateOutboundStop(index, "address", e.target.value)
-                                    }
-                                    className={inputClass()}
-                                    placeholder={t.stopAddress}
-                                  />
-                                </Field>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Field label={t.stopAddress}>
+                <input
+                  ref={(el) => {
+                    outboundStopAddressRefs.current[index] = el;
+                  }}
+                  value={stop.address}
+                  onChange={(e) =>
+                    updateOutboundStop(index, "address", e.target.value)
+                  }
+                  className={inputClass()}
+                  placeholder={t.stopAddress}
+                />
+              </Field>
 
-                                <Field label={t.stopCity}>
-                                  <input
-                                    value={stop.city}
-                                    onChange={(e) =>
-                                      updateOutboundStop(index, "city", e.target.value)
-                                    }
-                                    className={inputClass()}
-                                    placeholder={t.stopCity}
-                                  />
-                                </Field>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+              <Field label={t.stopCity}>
+                <input
+                  value={stop.city}
+                  onChange={(e) =>
+                    updateOutboundStop(index, "city", e.target.value)
+                  }
+                  className={inputClass()}
+                  placeholder={t.stopCity}
+                />
+              </Field>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</div>
 
                     <div className="mt-5 grid gap-5 sm:grid-cols-2">
                       <Field
