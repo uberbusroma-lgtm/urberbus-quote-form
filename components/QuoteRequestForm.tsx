@@ -1029,155 +1029,42 @@ export default function QuoteRequestForm({
                   </h2>
 
                   <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-  <h3 className="mb-4 text-base font-semibold text-slate-900">
-    {t.outboundSectionTitle}
-  </h3>
+                    <h3 className="mb-4 text-base font-semibold text-slate-900">
+                      {t.outboundSectionTitle}
+                    </h3>
 
-  <div className="grid gap-5 sm:grid-cols-2">
-    <Field
-      label={t.departureAddress}
-      error={errors.departureAddress}
-    >
-      <input
-        ref={departureAddressRef}
-        value={formData.departureAddress}
-        onChange={(e) =>
-          updateField("departureAddress", e.target.value)
-        }
-        className={inputClass(errors.departureAddress)}
-        placeholder={t.departureAddress}
-      />
-    </Field>
-
-    <Field
-      label={t.departureCity}
-      error={errors.departureCity}
-    >
-      <input
-        value={formData.departureCity}
-        onChange={(e) =>
-          updateField("departureCity", e.target.value)
-        }
-        className={inputClass(errors.departureCity)}
-        placeholder={t.departureCity}
-      />
-    </Field>
-  </div>
-
-  <div className="mt-5 grid gap-5 sm:grid-cols-2">
-    <Field
-      label={t.destinationAddress}
-      error={errors.destinationAddress}
-    >
-      <input
-        ref={destinationAddressRef}
-        value={formData.destinationAddress}
-        onChange={(e) =>
-          updateField("destinationAddress", e.target.value)
-        }
-        className={inputClass(errors.destinationAddress)}
-        placeholder={t.destinationAddress}
-      />
-    </Field>
-
-    <Field
-      label={t.destinationCity}
-      error={errors.destinationCity}
-    >
-      <input
-        value={formData.destinationCity}
-        onChange={(e) =>
-          updateField("destinationCity", e.target.value)
-        }
-        className={inputClass(errors.destinationCity)}
-        placeholder={t.destinationCity}
-      />
-    </Field>
-  </div>
-
-  <div className="mt-5 space-y-4">
-    <div className="flex items-center justify-end gap-3">
-      <button
-        type="button"
-        onClick={addOutboundStop}
-        className="inline-flex items-center justify-center rounded-2xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
-      >
-        + {t.addStop}
-      </button>
-    </div>
-
-    {formData.outboundStops.length === 0 ? (
-      <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-4 py-4 text-sm text-slate-500">
-        {t.noStops}
-      </div>
-    ) : (
-      <div className="space-y-4">
-        {formData.outboundStops.map((stop, index) => (
-          <div
-            key={index}
-            className="rounded-3xl border border-slate-200 bg-white p-4"
-          >
-            <div className="mb-4 flex items-center justify-between gap-3">
-              <span className="text-sm font-semibold text-slate-900">
-                {t.outboundStopLabel} {index + 1}
-              </span>
-              <button
-                type="button"
-                onClick={() => removeOutboundStop(index)}
-                className="text-sm font-medium text-red-600 transition hover:text-red-700"
-              >
-                {t.remove}
-              </button>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              <Field label={t.stopAddress}>
-                <input
-                  ref={(el) => {
-                    outboundStopAddressRefs.current[index] = el;
-                  }}
-                  value={stop.address}
-                  onChange={(e) =>
-                    updateOutboundStop(index, "address", e.target.value)
-                  }
-                  className={inputClass()}
-                  placeholder={t.stopAddress}
-                />
-              </Field>
-
-              <Field label={t.stopCity}>
-                <input
-                  value={stop.city}
-                  onChange={(e) =>
-                    updateOutboundStop(index, "city", e.target.value)
-                  }
-                  className={inputClass()}
-                  placeholder={t.stopCity}
-                />
-              </Field>
-            </div>
-          </div>
-        ))}
-      </div>
-    )}
-  </div>
-</div>
-
-                    <div className="mt-5 grid gap-5 sm:grid-cols-2">
+                    <div className="grid gap-5 sm:grid-cols-2">
                       <Field
-                        label={t.destinationCity}
-                        error={errors.destinationCity}
+                        label={t.departureAddress}
+                        error={errors.departureAddress}
                       >
                         <input
-                          value={formData.destinationCity}
+                          ref={departureAddressRef}
+                          value={formData.departureAddress}
                           onChange={(e) =>
-                            updateField("destinationCity", e.target.value)
+                            updateField("departureAddress", e.target.value)
                           }
-                          className={inputClass(errors.destinationCity)}
-                          placeholder={t.destinationCity}
+                          className={inputClass(errors.departureAddress)}
+                          placeholder={t.departureAddress}
                         />
                       </Field>
 
+                      <Field
+                        label={t.departureCity}
+                        error={errors.departureCity}
+                      >
+                        <input
+                          value={formData.departureCity}
+                          onChange={(e) =>
+                            updateField("departureCity", e.target.value)
+                          }
+                          className={inputClass(errors.departureCity)}
+                          placeholder={t.departureCity}
+                        />
+                      </Field>
+                    </div>
+
+                    <div className="mt-5 grid gap-5 sm:grid-cols-2">
                       <Field
                         label={t.destinationAddress}
                         error={errors.destinationAddress}
@@ -1192,468 +1079,581 @@ export default function QuoteRequestForm({
                           placeholder={t.destinationAddress}
                         />
                       </Field>
+
+                      <Field
+                        label={t.destinationCity}
+                        error={errors.destinationCity}
+                      >
+                        <input
+                          value={formData.destinationCity}
+                          onChange={(e) =>
+                            updateField("destinationCity", e.target.value)
+                          }
+                          className={inputClass(errors.destinationCity)}
+                          placeholder={t.destinationCity}
+                        />
+                      </Field>
+                    </div>
+
+                    <div className="mt-5 space-y-4">
+                      <div className="flex items-center justify-end gap-3">
+                        <button
+                          type="button"
+                          onClick={addOutboundStop}
+                          className="inline-flex items-center justify-center rounded-2xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+                        >
+                          + {t.addStop}
+                        </button>
+                      </div>
+
+                      {formData.outboundStops.length === 0 ? (
+                        <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-4 py-4 text-sm text-slate-500">
+                          {t.noStops}
+                        </div>
+                      ) : (
+                        <div className="space-y-4">
+                          {formData.outboundStops.map((stop, index) => (
+                            <div
+                              key={index}
+                              className="rounded-3xl border border-slate-200 bg-white p-4"
+                            >
+                              <div className="mb-4 flex items-center justify-between gap-3">
+                                <span className="text-sm font-semibold text-slate-900">
+                                  {t.outboundStopLabel} {index + 1}
+                                </span>
+                                <button
+                                  type="button"
+                                  onClick={() => removeOutboundStop(index)}
+                                  className="text-sm font-medium text-red-600 transition hover:text-red-700"
+                                >
+                                  {t.remove}
+                                </button>
+                              </div>
+
+                              <div className="grid gap-4 sm:grid-cols-2">
+                                <Field label={t.stopAddress}>
+                                  <input
+                                    ref={(el) => {
+                                      outboundStopAddressRefs.current[index] = el;
+                                    }}
+                                    value={stop.address}
+                                    onChange={(e) =>
+                                      updateOutboundStop(index, "address", e.target.value)
+                                    }
+                                    className={inputClass()}
+                                    placeholder={t.stopAddress}
+                                  />
+                                </Field>
+
+                                <Field label={t.stopCity}>
+                                  <input
+                                    value={stop.city}
+                                    onChange={(e) =>
+                                      updateOutboundStop(index, "city", e.target.value)
+                                    }
+                                    className={inputClass()}
+                                    placeholder={t.stopCity}
+                                  />
+                                </Field>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
 
+                  <div className="mt-5 grid gap-5 sm:grid-cols-2">
+                    <Field
+                      label={t.destinationCity}
+                      error={errors.destinationCity}
+                    >
+                      <input
+                        value={formData.destinationCity}
+                        onChange={(e) =>
+                          updateField("destinationCity", e.target.value)
+                        }
+                        className={inputClass(errors.destinationCity)}
+                        placeholder={t.destinationCity}
+                      />
+                    </Field>
+
+                    <Field
+                      label={t.destinationAddress}
+                      error={errors.destinationAddress}
+                    >
+                      <input
+                        ref={destinationAddressRef}
+                        value={formData.destinationAddress}
+                        onChange={(e) =>
+                          updateField("destinationAddress", e.target.value)
+                        }
+                        className={inputClass(errors.destinationAddress)}
+                        placeholder={t.destinationAddress}
+                      />
+                    </Field>
+                  </div>
+                </div>
+
                   {formData.tripType === "roundTrip" && (
-                    <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-                      <h3 className="mb-4 text-base font-semibold text-slate-900">
-                        {t.returnSectionTitle}
-                      </h3>
+                <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                  <h3 className="mb-4 text-base font-semibold text-slate-900">
+                    {t.returnSectionTitle}
+                  </h3>
 
-                      <div className="space-y-5">
-                        <Field label={t.returnStartsSameQuestion}>
-                          <select
-                            value={
-                              formData.returnStartsFromSameAsDestination
-                                ? "yes"
-                                : "no"
-                            }
-                            onChange={(e) =>
-                              updateField(
-                                "returnStartsFromSameAsDestination",
-                                e.target.value === "yes"
-                              )
-                            }
-                            className={inputClass()}
-                          >
-                            <option value="yes">{t.yes}</option>
-                            <option value="no">{t.no}</option>
-                          </select>
-                        </Field>
+                  <div className="space-y-5">
+                    <Field label={t.returnStartsSameQuestion}>
+                      <select
+                        value={
+                          formData.returnStartsFromSameAsDestination
+                            ? "yes"
+                            : "no"
+                        }
+                        onChange={(e) =>
+                          updateField(
+                            "returnStartsFromSameAsDestination",
+                            e.target.value === "yes"
+                          )
+                        }
+                        className={inputClass()}
+                      >
+                        <option value="yes">{t.yes}</option>
+                        <option value="no">{t.no}</option>
+                      </select>
+                    </Field>
 
-                        <Field label={t.returnEndsSameQuestion}>
-                          <select
-                            value={
-                              formData.returnEndsAtSameAsDeparture
-                                ? "yes"
-                                : "no"
-                            }
-                            onChange={(e) =>
-                              updateField(
-                                "returnEndsAtSameAsDeparture",
-                                e.target.value === "yes"
-                              )
-                            }
-                            className={inputClass()}
-                          >
-                            <option value="yes">{t.yes}</option>
-                            <option value="no">{t.no}</option>
-                          </select>
-                        </Field>
+                    <Field label={t.returnEndsSameQuestion}>
+                      <select
+                        value={
+                          formData.returnEndsAtSameAsDeparture
+                            ? "yes"
+                            : "no"
+                        }
+                        onChange={(e) =>
+                          updateField(
+                            "returnEndsAtSameAsDeparture",
+                            e.target.value === "yes"
+                          )
+                        }
+                        className={inputClass()}
+                      >
+                        <option value="yes">{t.yes}</option>
+                        <option value="no">{t.no}</option>
+                      </select>
+                    </Field>
 
-                        <p className="text-sm text-slate-500">
-                          {t.autoReturnHelp}
-                        </p>
-                      </div>
-
-                      <div className="mt-5 grid gap-5 sm:grid-cols-2">
-                        <Field
-                          label={t.returnDepartureCityLabel}
-                          error={errors.returnDepartureCity}
-                        >
-                          <input
-                            value={
-                              formData.returnStartsFromSameAsDestination
-                                ? formData.destinationCity
-                                : formData.returnDepartureCity
-                            }
-                            onChange={(e) =>
-                              updateField("returnDepartureCity", e.target.value)
-                            }
-                            disabled={formData.returnStartsFromSameAsDestination}
-                            className={inputClass(errors.returnDepartureCity)}
-                            placeholder={t.returnDepartureCityLabel}
-                          />
-                        </Field>
-
-                        <Field
-                          label={t.returnDepartureAddressLabel}
-                          error={errors.returnDepartureAddress}
-                        >
-                          <input
-                            ref={returnDepartureAddressRef}
-                            value={
-                              formData.returnStartsFromSameAsDestination
-                                ? formData.destinationAddress
-                                : formData.returnDepartureAddress
-                            }
-                            onChange={(e) =>
-                              updateField(
-                                "returnDepartureAddress",
-                                e.target.value
-                              )
-                            }
-                            disabled={formData.returnStartsFromSameAsDestination}
-                            className={inputClass(
-                              errors.returnDepartureAddress
-                            )}
-                            placeholder={t.returnDepartureAddressLabel}
-                          />
-                        </Field>
-                      </div>
-
-                      <div className="mt-5 grid gap-5 sm:grid-cols-2">
-                        <Field
-                          label={t.returnDestinationCityLabel}
-                          error={errors.returnDestinationCity}
-                        >
-                          <input
-                            value={
-                              formData.returnEndsAtSameAsDeparture
-                                ? formData.departureCity
-                                : formData.returnDestinationCity
-                            }
-                            onChange={(e) =>
-                              updateField(
-                                "returnDestinationCity",
-                                e.target.value
-                              )
-                            }
-                            disabled={formData.returnEndsAtSameAsDeparture}
-                            className={inputClass(
-                              errors.returnDestinationCity
-                            )}
-                            placeholder={t.returnDestinationCityLabel}
-                          />
-                        </Field>
-
-                        <Field
-                          label={t.returnDestinationAddressLabel}
-                          error={errors.returnDestinationAddress}
-                        >
-                          <input
-                            ref={returnDestinationAddressRef}
-                            value={
-                              formData.returnEndsAtSameAsDeparture
-                                ? formData.departureAddress
-                                : formData.returnDestinationAddress
-                            }
-                            onChange={(e) =>
-                              updateField(
-                                "returnDestinationAddress",
-                                e.target.value
-                              )
-                            }
-                            disabled={formData.returnEndsAtSameAsDeparture}
-                            className={inputClass(
-                              errors.returnDestinationAddress
-                            )}
-                            placeholder={t.returnDestinationAddressLabel}
-                          />
-                        </Field>
-                      </div>
-
-                      <div className="mt-5 space-y-4">
-                        <div className="flex items-center justify-between gap-3">
-                          <h4 className="text-sm font-semibold text-slate-900">
-                            {t.returnIntermediateStops}
-                          </h4>
-                          <button
-                            type="button"
-                            onClick={addReturnStop}
-                            className="inline-flex items-center justify-center rounded-2xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
-                          >
-                            + {t.addStop}
-                          </button>
-                        </div>
-
-                        {formData.returnStops.length === 0 ? (
-                          <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-4 py-4 text-sm text-slate-500">
-                            {t.noStops}
-                          </div>
-                        ) : (
-                          <div className="space-y-4">
-                            {formData.returnStops.map((stop, index) => (
-                              <div
-                                key={index}
-                                className="rounded-3xl border border-slate-200 bg-white p-4"
-                              >
-                                <div className="mb-4 flex items-center justify-between gap-3">
-                                  <span className="text-sm font-semibold text-slate-900">
-                                    {t.returnStopLabel} {index + 1}
-                                  </span>
-                                  <button
-                                    type="button"
-                                    onClick={() => removeReturnStop(index)}
-                                    className="text-sm font-medium text-red-600 transition hover:text-red-700"
-                                  >
-                                    {t.remove}
-                                  </button>
-                                </div>
-
-                                <div className="grid gap-4 sm:grid-cols-2">
-                                  <Field label={t.stopCity}>
-                                    <input
-                                      value={stop.city}
-                                      onChange={(e) =>
-                                        updateReturnStop(
-                                          index,
-                                          "city",
-                                          e.target.value
-                                        )
-                                      }
-                                      className={inputClass()}
-                                      placeholder={t.stopCity}
-                                    />
-                                  </Field>
-
-                                  <Field label={t.stopAddress}>
-                                    <input
-                                      ref={(el) => {
-                                        returnStopAddressRefs.current[index] =
-                                          el;
-                                      }}
-                                      value={stop.address}
-                                      onChange={(e) =>
-                                        updateReturnStop(
-                                          index,
-                                          "address",
-                                          e.target.value
-                                        )
-                                      }
-                                      className={inputClass()}
-                                      placeholder={t.stopAddress}
-                                    />
-                                  </Field>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </section>
-              )}
-
-              {step === 5 && (
-                <section className="space-y-6">
-                  <div>
-                    <h2 className="text-lg font-semibold text-slate-900">
-                      {t.summary}
-                    </h2>
-                    <p className="mt-1 text-sm text-slate-600">
-                      {t.reviewText}
+                    <p className="text-sm text-slate-500">
+                      {t.autoReturnHelp}
                     </p>
                   </div>
 
-                  <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
-                    <h3 className="text-base font-semibold text-slate-900">
-                      {t.customerDetailsSummary}
-                    </h3>
-
-                    <dl className="mt-4 grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
-                      <SummaryItem label={t.fullName} value={summary.fullName} />
-                      <SummaryItem label={t.email} value={summary.email} />
-                      <SummaryItem label={t.phone} value={summary.fullPhone} />
-                      <SummaryItem
-                        label={t.customerType}
-                        value={summary.customerType}
+                  <div className="mt-5 grid gap-5 sm:grid-cols-2">
+                    <Field
+                      label={t.returnDepartureCityLabel}
+                      error={errors.returnDepartureCity}
+                    >
+                      <input
+                        value={
+                          formData.returnStartsFromSameAsDestination
+                            ? formData.destinationCity
+                            : formData.returnDepartureCity
+                        }
+                        onChange={(e) =>
+                          updateField("returnDepartureCity", e.target.value)
+                        }
+                        disabled={formData.returnStartsFromSameAsDestination}
+                        className={inputClass(errors.returnDepartureCity)}
+                        placeholder={t.returnDepartureCityLabel}
                       />
-                    </dl>
+                    </Field>
+
+                    <Field
+                      label={t.returnDepartureAddressLabel}
+                      error={errors.returnDepartureAddress}
+                    >
+                      <input
+                        ref={returnDepartureAddressRef}
+                        value={
+                          formData.returnStartsFromSameAsDestination
+                            ? formData.destinationAddress
+                            : formData.returnDepartureAddress
+                        }
+                        onChange={(e) =>
+                          updateField(
+                            "returnDepartureAddress",
+                            e.target.value
+                          )
+                        }
+                        disabled={formData.returnStartsFromSameAsDestination}
+                        className={inputClass(
+                          errors.returnDepartureAddress
+                        )}
+                        placeholder={t.returnDepartureAddressLabel}
+                      />
+                    </Field>
                   </div>
 
-                  <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
-                    <h3 className="text-base font-semibold text-slate-900">
-                      {t.serviceDetailsSummary}
-                    </h3>
+                  <div className="mt-5 grid gap-5 sm:grid-cols-2">
+                    <Field
+                      label={t.returnDestinationCityLabel}
+                      error={errors.returnDestinationCity}
+                    >
+                      <input
+                        value={
+                          formData.returnEndsAtSameAsDeparture
+                            ? formData.departureCity
+                            : formData.returnDestinationCity
+                        }
+                        onChange={(e) =>
+                          updateField(
+                            "returnDestinationCity",
+                            e.target.value
+                          )
+                        }
+                        disabled={formData.returnEndsAtSameAsDeparture}
+                        className={inputClass(
+                          errors.returnDestinationCity
+                        )}
+                        placeholder={t.returnDestinationCityLabel}
+                      />
+                    </Field>
 
-                    <dl className="mt-4 grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
-                      <SummaryItem
-                        label={t.serviceType}
-                        value={summary.serviceType}
+                    <Field
+                      label={t.returnDestinationAddressLabel}
+                      error={errors.returnDestinationAddress}
+                    >
+                      <input
+                        ref={returnDestinationAddressRef}
+                        value={
+                          formData.returnEndsAtSameAsDeparture
+                            ? formData.departureAddress
+                            : formData.returnDestinationAddress
+                        }
+                        onChange={(e) =>
+                          updateField(
+                            "returnDestinationAddress",
+                            e.target.value
+                          )
+                        }
+                        disabled={formData.returnEndsAtSameAsDeparture}
+                        className={inputClass(
+                          errors.returnDestinationAddress
+                        )}
+                        placeholder={t.returnDestinationAddressLabel}
                       />
-                      <SummaryItem label={t.tripType} value={summary.tripType} />
-                      <SummaryItem
-                        label={t.pickupDate}
-                        value={summary.pickupDate}
-                      />
-                      <SummaryItem
-                        label={t.pickupTime}
-                        value={summary.pickupTime}
-                      />
-                      {summary.tripType === "roundTrip" && (
-                        <>
-                          <SummaryItem
-                            label={t.returnDate}
-                            value={summary.returnDate}
-                          />
-                          <SummaryItem
-                            label={t.returnTime}
-                            value={summary.returnTime}
-                          />
-                        </>
-                      )}
-                    </dl>
+                    </Field>
                   </div>
 
-                  <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
-                    <h3 className="text-base font-semibold text-slate-900">
-                      {t.passengersSummary}
-                    </h3>
+                  <div className="mt-5 space-y-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <h4 className="text-sm font-semibold text-slate-900">
+                        {t.returnIntermediateStops}
+                      </h4>
+                      <button
+                        type="button"
+                        onClick={addReturnStop}
+                        className="inline-flex items-center justify-center rounded-2xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+                      >
+                        + {t.addStop}
+                      </button>
+                    </div>
 
-                    <dl className="mt-4 grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
-                      <SummaryItem
-                        label={t.passengersCount}
-                        value={String(summary.passengersCount)}
-                      />
-                      <SummaryItem
-                        label={t.luggageBig}
-                        value={String(summary.luggageBig)}
-                      />
-                      <SummaryItem
-                        label={t.luggageTrolley}
-                        value={String(summary.luggageTrolley)}
-                      />
-                      <SummaryItem
-                        label={t.luggageBackpack}
-                        value={String(summary.luggageBackpack)}
-                      />
-                      <SummaryItem
-                        label={t.specialEquipmentSummary}
-                        value={summary.specialEquipment}
-                      />
-                    </dl>
+                    {formData.returnStops.length === 0 ? (
+                      <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-4 py-4 text-sm text-slate-500">
+                        {t.noStops}
+                      </div>
+                    ) : (
+                      <div className="space-y-4">
+                        {formData.returnStops.map((stop, index) => (
+                          <div
+                            key={index}
+                            className="rounded-3xl border border-slate-200 bg-white p-4"
+                          >
+                            <div className="mb-4 flex items-center justify-between gap-3">
+                              <span className="text-sm font-semibold text-slate-900">
+                                {t.returnStopLabel} {index + 1}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => removeReturnStop(index)}
+                                className="text-sm font-medium text-red-600 transition hover:text-red-700"
+                              >
+                                {t.remove}
+                              </button>
+                            </div>
+
+                            <div className="grid gap-4 sm:grid-cols-2">
+                              <Field label={t.stopCity}>
+                                <input
+                                  value={stop.city}
+                                  onChange={(e) =>
+                                    updateReturnStop(
+                                      index,
+                                      "city",
+                                      e.target.value
+                                    )
+                                  }
+                                  className={inputClass()}
+                                  placeholder={t.stopCity}
+                                />
+                              </Field>
+
+                              <Field label={t.stopAddress}>
+                                <input
+                                  ref={(el) => {
+                                    returnStopAddressRefs.current[index] =
+                                      el;
+                                  }}
+                                  value={stop.address}
+                                  onChange={(e) =>
+                                    updateReturnStop(
+                                      index,
+                                      "address",
+                                      e.target.value
+                                    )
+                                  }
+                                  className={inputClass()}
+                                  placeholder={t.stopAddress}
+                                />
+                              </Field>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
+                </div>
+              )}
+            </section>
+          )}
 
-                  <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
-                    <h3 className="text-base font-semibold text-slate-900">
-                      {t.itinerarySummary}
-                    </h3>
+          {step === 5 && (
+            <section className="space-y-6">
+              <div>
+                <h2 className="text-lg font-semibold text-slate-900">
+                  {t.summary}
+                </h2>
+                <p className="mt-1 text-sm text-slate-600">
+                  {t.reviewText}
+                </p>
+              </div>
 
-                    <dl className="mt-4 grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
+                <h3 className="text-base font-semibold text-slate-900">
+                  {t.customerDetailsSummary}
+                </h3>
+
+                <dl className="mt-4 grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
+                  <SummaryItem label={t.fullName} value={summary.fullName} />
+                  <SummaryItem label={t.email} value={summary.email} />
+                  <SummaryItem label={t.phone} value={summary.fullPhone} />
+                  <SummaryItem
+                    label={t.customerType}
+                    value={summary.customerType}
+                  />
+                </dl>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
+                <h3 className="text-base font-semibold text-slate-900">
+                  {t.serviceDetailsSummary}
+                </h3>
+
+                <dl className="mt-4 grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
+                  <SummaryItem
+                    label={t.serviceType}
+                    value={summary.serviceType}
+                  />
+                  <SummaryItem label={t.tripType} value={summary.tripType} />
+                  <SummaryItem
+                    label={t.pickupDate}
+                    value={summary.pickupDate}
+                  />
+                  <SummaryItem
+                    label={t.pickupTime}
+                    value={summary.pickupTime}
+                  />
+                  {summary.tripType === "roundTrip" && (
+                    <>
                       <SummaryItem
-                        label={t.departureCity}
-                        value={summary.departureCity}
+                        label={t.returnDate}
+                        value={summary.returnDate}
                       />
                       <SummaryItem
-                        label={t.departureAddress}
-                        value={summary.departureAddress}
+                        label={t.returnTime}
+                        value={summary.returnTime}
+                      />
+                    </>
+                  )}
+                </dl>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
+                <h3 className="text-base font-semibold text-slate-900">
+                  {t.passengersSummary}
+                </h3>
+
+                <dl className="mt-4 grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
+                  <SummaryItem
+                    label={t.passengersCount}
+                    value={String(summary.passengersCount)}
+                  />
+                  <SummaryItem
+                    label={t.luggageBig}
+                    value={String(summary.luggageBig)}
+                  />
+                  <SummaryItem
+                    label={t.luggageTrolley}
+                    value={String(summary.luggageTrolley)}
+                  />
+                  <SummaryItem
+                    label={t.luggageBackpack}
+                    value={String(summary.luggageBackpack)}
+                  />
+                  <SummaryItem
+                    label={t.specialEquipmentSummary}
+                    value={summary.specialEquipment}
+                  />
+                </dl>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
+                <h3 className="text-base font-semibold text-slate-900">
+                  {t.itinerarySummary}
+                </h3>
+
+                <dl className="mt-4 grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
+                  <SummaryItem
+                    label={t.departureCity}
+                    value={summary.departureCity}
+                  />
+                  <SummaryItem
+                    label={t.departureAddress}
+                    value={summary.departureAddress}
+                  />
+                  <SummaryItem
+                    label={t.destinationCity}
+                    value={summary.destinationCity}
+                  />
+                  <SummaryItem
+                    label={t.destinationAddress}
+                    value={summary.destinationAddress}
+                  />
+
+                  {summary.outboundStops.map((stop, index) => (
+                    <React.Fragment
+                      key={`summary-outbound-stop-${index}`}
+                    >
+                      <SummaryItem
+                        label={`${t.outboundStopLabel} ${index + 1} - ${t.stopCity}`}
+                        value={stop.city}
                       />
                       <SummaryItem
-                        label={t.destinationCity}
-                        value={summary.destinationCity}
+                        label={`${t.outboundStopLabel} ${index + 1} - ${t.stopAddress}`}
+                        value={stop.address}
+                      />
+                    </React.Fragment>
+                  ))}
+
+                  {summary.tripType === "roundTrip" && (
+                    <>
+                      <SummaryItem
+                        label={t.returnDepartureCityLabel}
+                        value={
+                          summary.returnStartsFromSameAsDestination
+                            ? summary.destinationCity
+                            : summary.returnDepartureCity
+                        }
                       />
                       <SummaryItem
-                        label={t.destinationAddress}
-                        value={summary.destinationAddress}
+                        label={t.returnDepartureAddressLabel}
+                        value={
+                          summary.returnStartsFromSameAsDestination
+                            ? summary.destinationAddress
+                            : summary.returnDepartureAddress
+                        }
+                      />
+                      <SummaryItem
+                        label={t.returnDestinationCityLabel}
+                        value={
+                          summary.returnEndsAtSameAsDeparture
+                            ? summary.departureCity
+                            : summary.returnDestinationCity
+                        }
+                      />
+                      <SummaryItem
+                        label={t.returnDestinationAddressLabel}
+                        value={
+                          summary.returnEndsAtSameAsDeparture
+                            ? summary.departureAddress
+                            : summary.returnDestinationAddress
+                        }
                       />
 
-                      {summary.outboundStops.map((stop, index) => (
+                      {summary.returnStops.map((stop, index) => (
                         <React.Fragment
-                          key={`summary-outbound-stop-${index}`}
+                          key={`summary-return-stop-${index}`}
                         >
                           <SummaryItem
-                            label={`${t.outboundStopLabel} ${index + 1} - ${t.stopCity}`}
+                            label={`${t.returnStopLabel} ${index + 1} - ${t.stopCity}`}
                             value={stop.city}
                           />
                           <SummaryItem
-                            label={`${t.outboundStopLabel} ${index + 1} - ${t.stopAddress}`}
+                            label={`${t.returnStopLabel} ${index + 1} - ${t.stopAddress}`}
                             value={stop.address}
                           />
                         </React.Fragment>
                       ))}
-
-                      {summary.tripType === "roundTrip" && (
-                        <>
-                          <SummaryItem
-                            label={t.returnDepartureCityLabel}
-                            value={
-                              summary.returnStartsFromSameAsDestination
-                                ? summary.destinationCity
-                                : summary.returnDepartureCity
-                            }
-                          />
-                          <SummaryItem
-                            label={t.returnDepartureAddressLabel}
-                            value={
-                              summary.returnStartsFromSameAsDestination
-                                ? summary.destinationAddress
-                                : summary.returnDepartureAddress
-                            }
-                          />
-                          <SummaryItem
-                            label={t.returnDestinationCityLabel}
-                            value={
-                              summary.returnEndsAtSameAsDeparture
-                                ? summary.departureCity
-                                : summary.returnDestinationCity
-                            }
-                          />
-                          <SummaryItem
-                            label={t.returnDestinationAddressLabel}
-                            value={
-                              summary.returnEndsAtSameAsDeparture
-                                ? summary.departureAddress
-                                : summary.returnDestinationAddress
-                            }
-                          />
-
-                          {summary.returnStops.map((stop, index) => (
-                            <React.Fragment
-                              key={`summary-return-stop-${index}`}
-                            >
-                              <SummaryItem
-                                label={`${t.returnStopLabel} ${index + 1} - ${t.stopCity}`}
-                                value={stop.city}
-                              />
-                              <SummaryItem
-                                label={`${t.returnStopLabel} ${index + 1} - ${t.stopAddress}`}
-                                value={stop.address}
-                              />
-                            </React.Fragment>
-                          ))}
-                        </>
-                      )}
-                    </dl>
-                  </div>
-
-                  <Field label={t.notesLabel}>
-                    <textarea
-                      rows={5}
-                      value={formData.notes}
-                      onChange={(e) => updateField("notes", e.target.value)}
-                      className={inputClass()}
-                      placeholder={t.notesPlaceholder}
-                    />
-                  </Field>
-                </section>
-              )}
-
-              <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <button
-                  type="button"
-                  onClick={handlePrevious}
-                  disabled={step === 1}
-                  className="inline-flex items-center justify-center rounded-2xl border border-slate-300 px-5 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  {t.previous}
-                </button>
-
-                {step < totalSteps ? (
-                  <button
-                    type="button"
-                    onClick={handleNext}
-                    className="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
-                  >
-                    {t.next}
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={handleSubmit}
-                    disabled={isSubmitting || step !== 5}
-                    className="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
-                  >
-                    {isSubmitting ? t.sending : t.submit}
-                  </button>
-                )}
+                    </>
+                  )}
+                </dl>
               </div>
-            </form>
+
+              <Field label={t.notesLabel}>
+                <textarea
+                  rows={5}
+                  value={formData.notes}
+                  onChange={(e) => updateField("notes", e.target.value)}
+                  className={inputClass()}
+                  placeholder={t.notesPlaceholder}
+                />
+              </Field>
+            </section>
           )}
-        </div>
+
+          <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <button
+              type="button"
+              onClick={handlePrevious}
+              disabled={step === 1}
+              className="inline-flex items-center justify-center rounded-2xl border border-slate-300 px-5 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {t.previous}
+            </button>
+
+            {step < totalSteps ? (
+              <button
+                type="button"
+                onClick={handleNext}
+                className="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+              >
+                {t.next}
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={handleSubmit}
+                disabled={isSubmitting || step !== 5}
+                className="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {isSubmitting ? t.sending : t.submit}
+              </button>
+            )}
+          </div>
+        </form>
+          )}
       </div>
+    </div >
     </>
   );
 }
@@ -1694,7 +1694,6 @@ function SummaryItem({ label, value }: { label: string; value?: string }) {
 }
 
 function inputClass(error?: string) {
-  return `w-full rounded-2xl border bg-white px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-500 ${
-    error ? "border-red-400" : "border-slate-300"
-  }`;
+  return `w-full rounded-2xl border bg-white px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-500 ${error ? "border-red-400" : "border-slate-300"
+    }`;
 }
