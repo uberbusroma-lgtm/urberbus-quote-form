@@ -50,9 +50,9 @@ const translations = {
     destinationCity: "Città di destinazione",
     destinationAddress: "Indirizzo di destinazione",
     intermediateStops: "Tappe intermedie",
-    addStop: "Aggiungi tappa",
-    stopCity: "Città tappa",
-    stopAddress: "Indirizzo tappa",
+    addStop: "Stop extra",
+    stopCity: "Città stop extra",
+    stopAddress: "Indirizzo stop extra",
     remove: "Rimuovi",
     noStops: "Nessuna tappa aggiunta",
     passengersCount: "Numero passeggeri",
@@ -79,7 +79,7 @@ const translations = {
     outboundIntermediateStops: "Tappe intermedie andata",
     returnIntermediateStops: "Tappe intermedie ritorno",
     outboundStopLabel: "Tappa andata",
-    returnStopLabel: "Tappa ritorno",
+    returnStopLabel: "Stop extra",
     returnStartsSameQuestion:
       "Il ritorno parte dallo stesso luogo di arrivo?",
     returnEndsSameQuestion:
@@ -144,9 +144,9 @@ const translations = {
     destinationCity: "Destination city",
     destinationAddress: "Destination address",
     intermediateStops: "Intermediate stops",
-    addStop: "Add stop",
-    stopCity: "Stop city",
-    stopAddress: "Stop address",
+    addStop: "Extra stop",
+    stopCity: "Extra stop city",
+    stopAddress: "Extra stop address",
     remove: "Remove",
     noStops: "No stops added",
     passengersCount: "Number of passengers",
@@ -172,7 +172,7 @@ const translations = {
     returnSectionTitle: "Return",
     outboundIntermediateStops: "Intermediate stops outbound",
     returnIntermediateStops: "Intermediate stops return",
-    outboundStopLabel: "Outbound stop",
+    outboundStopLabel: "Extra stop",
     returnStopLabel: "Return stop",
     returnStartsSameQuestion:
       "Does the return trip start from the same arrival location?",
@@ -1035,20 +1035,6 @@ export default function QuoteRequestForm({
 
                     <div className="grid gap-5 sm:grid-cols-2">
                       <Field
-                        label={t.departureCity}
-                        error={errors.departureCity}
-                      >
-                        <input
-                          value={formData.departureCity}
-                          onChange={(e) =>
-                            updateField("departureCity", e.target.value)
-                          }
-                          className={inputClass(errors.departureCity)}
-                          placeholder={t.departureCity}
-                        />
-                      </Field>
-
-                      <Field
                         label={t.departureAddress}
                         error={errors.departureAddress}
                       >
@@ -1062,13 +1048,55 @@ export default function QuoteRequestForm({
                           placeholder={t.departureAddress}
                         />
                       </Field>
+
+                      <Field
+                        label={t.departureCity}
+                        error={errors.departureCity}
+                      >
+                        <input
+                          value={formData.departureCity}
+                          onChange={(e) =>
+                            updateField("departureCity", e.target.value)
+                          }
+                          className={inputClass(errors.departureCity)}
+                          placeholder={t.departureCity}
+                        />
+                      </Field>
+                    </div>
+
+                    <div className="mt-5 grid gap-5 sm:grid-cols-2">
+                      <Field
+                        label={t.destinationAddress}
+                        error={errors.destinationAddress}
+                      >
+                        <input
+                          ref={destinationAddressRef}
+                          value={formData.destinationAddress}
+                          onChange={(e) =>
+                            updateField("destinationAddress", e.target.value)
+                          }
+                          className={inputClass(errors.destinationAddress)}
+                          placeholder={t.destinationAddress}
+                        />
+                      </Field>
+
+                      <Field
+                        label={t.destinationCity}
+                        error={errors.destinationCity}
+                      >
+                        <input
+                          value={formData.destinationCity}
+                          onChange={(e) =>
+                            updateField("destinationCity", e.target.value)
+                          }
+                          className={inputClass(errors.destinationCity)}
+                          placeholder={t.destinationCity}
+                        />
+                      </Field>
                     </div>
 
                     <div className="mt-5 space-y-4">
-                      <div className="flex items-center justify-between gap-3">
-                        <h4 className="text-sm font-semibold text-slate-900">
-                          {t.outboundIntermediateStops}
-                        </h4>
+                      <div className="flex items-center justify-end gap-3">
                         <button
                           type="button"
                           onClick={addOutboundStop}
@@ -1103,37 +1131,28 @@ export default function QuoteRequestForm({
                               </div>
 
                               <div className="grid gap-4 sm:grid-cols-2">
+                                <Field label={t.stopAddress}>
+                                  <input
+                                    ref={(el) => {
+                                      outboundStopAddressRefs.current[index] = el;
+                                    }}
+                                    value={stop.address}
+                                    onChange={(e) =>
+                                      updateOutboundStop(index, "address", e.target.value)
+                                    }
+                                    className={inputClass()}
+                                    placeholder={t.stopAddress}
+                                  />
+                                </Field>
+
                                 <Field label={t.stopCity}>
                                   <input
                                     value={stop.city}
                                     onChange={(e) =>
-                                      updateOutboundStop(
-                                        index,
-                                        "city",
-                                        e.target.value
-                                      )
+                                      updateOutboundStop(index, "city", e.target.value)
                                     }
                                     className={inputClass()}
                                     placeholder={t.stopCity}
-                                  />
-                                </Field>
-
-                                <Field label={t.stopAddress}>
-                                  <input
-                                    ref={(el) => {
-                                      outboundStopAddressRefs.current[index] =
-                                        el;
-                                    }}
-                                    value={stop.address}
-                                    onChange={(e) =>
-                                      updateOutboundStop(
-                                        index,
-                                        "address",
-                                        e.target.value
-                                      )
-                                    }
-                                    className={inputClass()}
-                                    placeholder={t.stopAddress}
                                   />
                                 </Field>
                               </div>
