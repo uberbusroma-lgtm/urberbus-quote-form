@@ -37,7 +37,7 @@ const translations = {
     oneWay: "Solo andata",
     roundTrip: "Andata e ritorno",
     transfer: "Transfer",
-    hourly: "Disposizione oraria",
+    hourly: "Bus a disposizione",
     tour: "Tour",
     multiDay: "Servizio più giorni",
     event: "Evento",
@@ -131,7 +131,7 @@ const translations = {
     oneWay: "One way",
     roundTrip: "Round trip",
     transfer: "Transfer",
-    hourly: "Hourly service",
+    hourly: "Bus at disposal",
     tour: "Tour",
     multiDay: "Multi-day service",
     event: "Event",
@@ -878,9 +878,6 @@ export default function QuoteRequestForm({
                       >
                         <option value="transfer">{t.transfer}</option>
                         <option value="hourly">{t.hourly}</option>
-                        <option value="tour">{t.tour}</option>
-                        <option value="multiDay">{t.multiDay}</option>
-                        <option value="event">{t.event}</option>
                       </select>
                     </Field>
 
