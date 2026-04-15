@@ -662,10 +662,30 @@ export default function QuoteRequestForm({
     try {
       const requestCode = generateRequestCode();
 
-      const normalizedPhone =
-        itiRef.current?.getNumber() ||
+      const rawPhone = (
         phoneInputRef.current?.value ||
-        formData.phone;
+        formData.phone ||
+        ""
+      ).replace(/\D/g, "");
+
+      const selectedDialCode =
+        itiRef.current?.getSelectedCountryData?.().dialCode || "";
+
+      let normalizedPhone = itiRef.current?.getNumber() || "";
+
+      if (!normalizedPhone && rawPhone && selectedDialCode) {
+        normalizedPhone = `+${selectedDialCode}${rawPhone}`;
+      }
+
+      if (!normalizedPhone) {
+        setErrors((prev) => ({
+          ...prev,
+          phone: t.invalidPhone,
+        }));
+        setIsSubmitting(false);
+        setStep(1);
+        return;
+      }
 
       const payload = {
         locale,
