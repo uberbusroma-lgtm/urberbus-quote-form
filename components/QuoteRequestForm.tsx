@@ -310,6 +310,30 @@ function generateRequestCode() {
   return `UBR-${yyyy}${mm}${dd}-${rand}`;
 }
 
+function buildNormalizedPhone(
+  iti: Iti | null,
+  input: HTMLInputElement | null,
+  fallbackPhone: string
+) {
+  const rawPhone = input?.value || fallbackPhone || "";
+  const digitsOnly = rawPhone.replace(/[^\d]/g, "");
+
+  if (!digitsOnly) return "";
+
+  const selectedCountryData = iti?.getSelectedCountryData();
+  const dialCode = selectedCountryData?.dialCode || "";
+
+  if (dialCode && digitsOnly.startsWith(dialCode)) {
+    return `+${digitsOnly}`;
+  }
+
+  if (dialCode) {
+    return `+${dialCode}${digitsOnly}`;
+  }
+
+  return rawPhone.trim();
+}
+
 export default function QuoteRequestForm({
   source,
   initialLocale,
@@ -530,10 +554,11 @@ export default function QuoteRequestForm({
       else if (!isEmailValid(formData.email))
         nextErrors.email = t.invalidEmail;
 
-      const currentPhoneValue =
-        itiRef.current?.getNumber() ||
-        phoneInputRef.current?.value ||
-        formData.phone;
+      const currentPhoneValue = buildNormalizedPhone(
+        itiRef.current,
+        phoneInputRef.current,
+        formData.phone
+      );
 
       if (!currentPhoneValue.trim()) {
         nextErrors.phone = t.required;
@@ -662,20 +687,11 @@ export default function QuoteRequestForm({
     try {
       const requestCode = generateRequestCode();
 
-      const rawPhone = (
-        phoneInputRef.current?.value ||
-        formData.phone ||
-        ""
-      ).replace(/\D/g, "");
-
-      const selectedDialCode =
-        itiRef.current?.getSelectedCountryData?.().dialCode || "";
-
-      let normalizedPhone = itiRef.current?.getNumber() || "";
-
-      if (!normalizedPhone && rawPhone && selectedDialCode) {
-        normalizedPhone = `+${selectedDialCode}${rawPhone}`;
-      }
+      const normalizedPhone = buildNormalizedPhone(
+       itiRef.current,
+       phoneInputRef.current,
+       formData.phone
+      );
 
       if (!normalizedPhone) {
         setErrors((prev) => ({
