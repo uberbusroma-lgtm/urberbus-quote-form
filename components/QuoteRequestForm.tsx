@@ -414,7 +414,6 @@ export default function QuoteRequestForm({
       if (input.dataset.autocompleteBound === "1") return;
 
       const autocomplete = new window.google.maps.places.Autocomplete(input, {
-        types: ["address"],
         fields: ["formatted_address", "address_components"],
       });
 
